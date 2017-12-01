@@ -27,7 +27,9 @@ extension ViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellName, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: self.cellName, for: indexPath) as? CustomCell else {
+            return UITableViewCell()
+        }
         print("📝cell.isUserInteractionEnabled: \(cell.isUserInteractionEnabled)")
         print("📝cell.contentView.isUserInteractionEnabled: \(cell.contentView.isUserInteractionEnabled)")
         return cell
